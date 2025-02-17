@@ -29,22 +29,22 @@ jobs:
         npm install @faker-js/faker --save-dev
         npm install cypress-fs --save-dev
 
-      # 4. Run tests  
+      # 4. Create reports directory
+    - name: Create reports directory
+      run: mkdir -p ./reports
+
+      # 5. Run tests  
     - name: Run tests
       run: npx cypress run
 
-      # 5. Merge Cypress test reports
+      # 6. Merge Cypress test reports
     - name: Merge Cypress test reports
       run: |
         npx mochawesome-merge cypress/reports/*.json > cypress/reports/merged-report.json
 
-      # 6. Generate the HTML report
+      # 7. Generate the HTML report
     - name: Generate HTML report
       run: npx marge cypress/reports/merged-report.json -o cypress/reports --inline
-
-      # 7. Create reports directory
-    - name: Create reports directory
-      run: mkdir -p ./reports
 
       # 8. Move the HTML report to the reports directory
     - name: Move HTML report to reports folder
