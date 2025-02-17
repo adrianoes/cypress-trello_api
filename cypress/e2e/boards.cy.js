@@ -7,7 +7,7 @@ describe('/boards', () => {
 
     // beforeEach and afterEach were not used in this testfile because they would aplly only to get and update tests. for the for create, after withe delete command would be used and. For delete, before with create command wouuld be used. It would be more confused so I prefer to let it as it is.
 
-    it('Create a Board', { tags: ['BASIC', 'FULL'] }, () => {
+    it('Create a Board', { tags: ['BASIC', 'FULL', 'BOARD'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
         // Altough the cy.createBoard() custom command exists, raw code was used here so we are able to focus only in this action if required. 
         const board_name = 'myBoard123'
@@ -27,7 +27,7 @@ describe('/boards', () => {
         cy.deleteJsonFile(randomNumber)       
     })
 
-    it('Get a Board', { tags: ['BASIC', 'FULL'] }, () => {
+    it('Get a Board', { tags: ['BASIC', 'FULL', 'BOARD'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
         cy.createBoard(randomNumber)
         // cy.read is use to read data from fixture file. cyfixture has problems with rewrited files.
@@ -47,7 +47,7 @@ describe('/boards', () => {
         cy.deleteJsonFile(randomNumber)  
     })
 
-    it('Update a Board - name', { tags: ['BASIC', 'FULL'] }, () => {
+    it('Update a Board - name', { tags: ['BASIC', 'FULL', 'BOARD'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
         cy.createBoard(randomNumber)
         cy.readFile(`cypress/fixtures/testdata-${randomNumber}.json`).then(response => {
@@ -68,7 +68,7 @@ describe('/boards', () => {
         cy.deleteJsonFile(randomNumber)          
     })
 
-    it('Delete a Board', { tags: ['BASIC', 'FULL'] }, () => {
+    it('Delete a Board', { tags: ['BASIC', 'FULL', 'BOARD'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
         cy.createBoard(randomNumber)
         cy.readFile(`cypress/fixtures/testdata-${randomNumber}.json`).then(response => {

@@ -4,7 +4,7 @@ describe('/checklists', () => {
     const token = `${Cypress.env('trelloToken')}`
     const key = `${Cypress.env('trelloKey')}`
 
-    it('Create a Checklist', { tags: ['BASIC', 'FULL'] }, () => {
+    it('Create a Checklist', { tags: ['BASIC', 'FULL', 'CHECKLIST'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
         cy.createBoard(randomNumber)
         cy.createList(randomNumber)
@@ -39,7 +39,7 @@ describe('/checklists', () => {
         cy.deleteJsonFile(randomNumber)    
     })   
 
-    it('Get a Checklist', { tags: ['BASIC', 'FULL'] }, () => {
+    it('Get a Checklist', { tags: ['BASIC', 'FULL', 'CHECKLIST'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
         cy.createBoard(randomNumber)
         cy.createList(randomNumber)
@@ -63,7 +63,7 @@ describe('/checklists', () => {
         cy.deleteJsonFile(randomNumber)    
     })
 
-    it('Update a Checklist - name', { tags: ['BASIC', 'FULL'] }, () => {
+    it('Update a Checklist - name', { tags: ['BASIC', 'FULL', 'CHECKLIST'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
         cy.createBoard(randomNumber)
         cy.createList(randomNumber)
@@ -90,7 +90,7 @@ describe('/checklists', () => {
         cy.deleteJsonFile(randomNumber)    
     })
 
-    it('Delete a Checklist', { tags: ['BASIC', 'FULL'] }, () => {
+    it('Delete a Checklist', { tags: ['BASIC', 'FULL', 'CHECKLIST'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
         cy.createBoard(randomNumber)
         cy.createList(randomNumber)

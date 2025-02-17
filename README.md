@@ -55,6 +55,8 @@ Check then both to add both options in context menu.
 - Execute ```yarn cypress run``` or ```npx cypress run``` to execute cypress in headless mode.
 - Execute ```CYPRESS_grepTags=BASIC yarn cypress run``` to execute cypress tests tagged as "BASIC"
 - Execute ```CYPRESS_grepTags=NEGATIVE yarn cypress run``` to execute cypress tests tagged as "NEGATIVE".
+- Execute ```CYPRESS_grepTags=CHECKLIST+BOARD yarn cypress run``` to execute cypress tests tagged as both "CHECKLIST" and "BOARD".
+- Execute ```CYPRESS_grepTags=NEGATIVE,CARD yarn cypress run``` to execute cypress tests tagged as "NEGATIVE" or "CARD".
 - Execute ```npm run cy:parallel``` to execute cypress tests in parallel.
 - Execute ```npx cypress run``` to execute cypress tests and then execute ```npx mochawesome-merge cypress/reports/*.json > cypress/reports/merged-report.json``` and ```npx marge cypress/reports/merged-report.json -o cypress/reports --inline``` to merge the individual test suite reports in a .json file and generate .html report respectively. 
 
