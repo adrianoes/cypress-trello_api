@@ -51,7 +51,7 @@ Check then both to add both options in context menu.
 
 # Tests:
 
-- Execute ```yarn cypress open``` to open cypress app and execute step by step, being able to debug the execution. 
+- Execute ```yarn cypress open``` or ```npx cypress open``` to open cypress app and execute step by step, being able to debug the execution. 
 - Execute ```yarn cypress run``` or ```npx cypress run``` to execute cypress in headless mode.
 - Execute ```CYPRESS_grepTags=BASIC yarn cypress run``` to execute cypress tests tagged as "BASIC"
 - Execute ```CYPRESS_grepTags=NEGATIVE yarn cypress run``` to execute cypress tests tagged as "NEGATIVE".
@@ -81,7 +81,4 @@ Check then both to add both options in context menu.
 # Tips:
 
 - UI and API tests to send password reset link to user's email and API tests to verify a password reset token and reset a user's password must be tested manually as they rely on e-mail verification.
-
-
-
-https://www.npmjs.com/package/cypress-fs
+- In order to escape call back hell, each response has its assert data saved in a .json file. This data is then called in a custom command. In order to call the righ .json file when dealing with paralel tests, a random number is assigned to each test. There is no way to connect the random number from a hook to the code in the body of the test. 

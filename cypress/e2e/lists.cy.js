@@ -1,18 +1,13 @@
+import { faker } from '@faker-js/faker'
+
 describe('/lists', () => {
     const token = `${Cypress.env('trelloToken')}`
     const key = `${Cypress.env('trelloKey')}`
 
-    beforeEach(function () {
-        cy.createBoard()
-    });
-
-    afterEach(function () {        
-        // Trello has provided no api request for deleting a list. Instead we will be deleting the whole board to keep the environment clean.
-        cy.deleteBoard()
-    });
-
     it('Create a List on a Board', () => {
-        cy.readFile('cypress/fixtures/testdata.json').then(response => {
+        const randomNumber = faker.finance.creditCardNumber()
+        cy.createBoard(randomNumber)
+        cy.readFile(`cypress/fixtures/testdata-${randomNumber}.json`).then(response => {
             const board_id = response.board_id;
             cy.log(board_id);
             const list_name = 'myList666'
@@ -22,18 +17,21 @@ describe('/lists', () => {
             }).then(response => {
                 expect(response.status).to.eq(200)
                 cy.log(JSON.stringify(response.body.name))
-                cy.writeFile('cypress/fixtures/testdata.json', {
+                cy.writeFile(`cypress/fixtures/testdata-${randomNumber}.json`, {
                     // Wwrite again board_id since the command above will not add the list_id into the file, but rewrite it, so board id will be lost. Can do this or write other file.
                     "board_id": board_id,
                     "list_id": response.body.id
                 })
             })
         })
-    })
+        cy.deleteBoard(randomNumber)
+        cy.deleteJsonFile(randomNumber)    })
 
     it('Get a List', () => {
-        cy.createList()
-        cy.readFile('cypress/fixtures/testdata.json').then(response => {
+        const randomNumber = faker.finance.creditCardNumber()
+        cy.createBoard(randomNumber)
+        cy.createList(randomNumber)
+        cy.readFile(`cypress/fixtures/testdata-${randomNumber}.json`).then(response => {
             const list_id = response.list_id;
             cy.log(list_id);
             cy.api({
@@ -45,11 +43,14 @@ describe('/lists', () => {
                 cy.log(list_id)
             })
         })
-    })
+        cy.deleteBoard(randomNumber)
+        cy.deleteJsonFile(randomNumber)    })
 
     it('Update a List - name', () => {
-        cy.createList()
-        cy.readFile('cypress/fixtures/testdata.json').then(response => {
+        const randomNumber = faker.finance.creditCardNumber()
+        cy.createBoard(randomNumber)
+        cy.createList(randomNumber)
+        cy.readFile(`cypress/fixtures/testdata-${randomNumber}.json`).then(response => {
             const list_id = response.list_id;
             cy.log(list_id);
             cy.api({
@@ -62,7 +63,9 @@ describe('/lists', () => {
                 expect(response.status).to.eq(200)
                 cy.log(JSON.stringify(response.body.name))
             })                         
-        })   
+        })
+        cy.deleteBoard(randomNumber)
+        cy.deleteJsonFile(randomNumber)     
     })
 })
 

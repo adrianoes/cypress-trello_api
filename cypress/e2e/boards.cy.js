@@ -1,3 +1,5 @@
+import { faker } from '@faker-js/faker'
+
 describe('/boards', () => {
     // defined as environment variable so we can work with sensitive data. Secrets were created in github to deal with same data in github actions
     const token = `${Cypress.env('trelloToken')}`
@@ -6,6 +8,7 @@ describe('/boards', () => {
     // beforeEach and afterEach were not used in this testfile because they would aplly only to get and update tests. for the for create, after withe delete command would be used and. For delete, before with create command wouuld be used. It would be more confused so I prefer to let it as it is.
 
     it('Create a Board', () => {
+        const randomNumber = faker.finance.creditCardNumber()
         // Altough the cy.createBoard() custom command exists, raw code was used here so we are able to focus only in this action if required. 
         const board_name = 'myBoard123'
         // use cy.api so we can see the responses in screen view
@@ -16,17 +19,19 @@ describe('/boards', () => {
             expect(response.status).to.eq(200)
             cy.log(JSON.stringify(response.body.name))
             // cy.writeFile is use to write this data in fixture file everytime is needed and rewrite it son on. cy.fixture has problems with rewrited files.
-            cy.writeFile('cypress/fixtures/testdata.json', {
+            cy.writeFile(`cypress/fixtures/testdata-${randomNumber}.json`, {
                 "board_id": response.body.id
             })
         })
-        cy.deleteBoard()        
+        cy.deleteBoard(randomNumber) 
+        cy.deleteJsonFile(randomNumber)       
     })
 
     it('Get a Board', () => {
-        cy.createBoard()
+        const randomNumber = faker.finance.creditCardNumber()
+        cy.createBoard(randomNumber)
         // cy.read is use to read data from fixture file. cyfixture has problems with rewrited files.
-        cy.readFile('cypress/fixtures/testdata.json').then(response => {
+        cy.readFile(`cypress/fixtures/testdata-${randomNumber}.json`).then(response => {
             const board_id = response.board_id;
             cy.log(board_id);
             cy.api({
@@ -38,12 +43,14 @@ describe('/boards', () => {
                 cy.log(board_id)
             })        
         })
-        cy.deleteBoard()
+        cy.deleteBoard(randomNumber)
+        cy.deleteJsonFile(randomNumber)  
     })
 
     it('Update a Board - name', () => {
-        cy.createBoard()
-        cy.readFile('cypress/fixtures/testdata.json').then(response => {
+        const randomNumber = faker.finance.creditCardNumber()
+        cy.createBoard(randomNumber)
+        cy.readFile(`cypress/fixtures/testdata-${randomNumber}.json`).then(response => {
             const board_id = response.board_id;
             cy.log(board_id);
             cy.api({
@@ -57,12 +64,14 @@ describe('/boards', () => {
                 cy.log(JSON.stringify(response.body.name))
             })
         })
-        cy.deleteBoard()        
+        cy.deleteBoard(randomNumber)
+        cy.deleteJsonFile(randomNumber)          
     })
 
     it('Delete a Board', () => {
-        cy.createBoard()
-        cy.readFile('cypress/fixtures/testdata.json').then(response => {
+        const randomNumber = faker.finance.creditCardNumber()
+        cy.createBoard(randomNumber)
+        cy.readFile(`cypress/fixtures/testdata-${randomNumber}.json`).then(response => {
             const board_id = response.board_id;
             cy.log(board_id);
             cy.api({
@@ -72,5 +81,6 @@ describe('/boards', () => {
                 expect(response.status).to.eq(200);
             })
         })
+        cy.deleteJsonFile(randomNumber)  
     })
 })
