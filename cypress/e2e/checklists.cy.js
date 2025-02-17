@@ -4,7 +4,7 @@ describe('/checklists', () => {
     const token = `${Cypress.env('trelloToken')}`
     const key = `${Cypress.env('trelloKey')}`
 
-    it('Create a Checklist', () => {
+    it('Create a Checklist', { tags: ['BASIC', 'FULL'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
         cy.createBoard(randomNumber)
         cy.createList(randomNumber)
@@ -36,9 +36,10 @@ describe('/checklists', () => {
         cy.deleteChecklist(randomNumber)
         cy.deleteCard(randomNumber)           
         cy.deleteBoard(randomNumber)
-        cy.deleteJsonFile(randomNumber)    })   
+        cy.deleteJsonFile(randomNumber)    
+    })   
 
-    it('Get a Checklist', () => {
+    it('Get a Checklist', { tags: ['BASIC', 'FULL'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
         cy.createBoard(randomNumber)
         cy.createList(randomNumber)
@@ -59,9 +60,10 @@ describe('/checklists', () => {
         cy.deleteChecklist(randomNumber)
         cy.deleteCard(randomNumber)           
         cy.deleteBoard(randomNumber)
-        cy.deleteJsonFile(randomNumber)    })
+        cy.deleteJsonFile(randomNumber)    
+    })
 
-    it('Update a Checklist - name', () => {
+    it('Update a Checklist - name', { tags: ['BASIC', 'FULL'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
         cy.createBoard(randomNumber)
         cy.createList(randomNumber)
@@ -85,9 +87,10 @@ describe('/checklists', () => {
         cy.deleteChecklist(randomNumber)
         cy.deleteCard(randomNumber)           
         cy.deleteBoard(randomNumber)
-        cy.deleteJsonFile(randomNumber)    })
+        cy.deleteJsonFile(randomNumber)    
+    })
 
-    it('Delete a Checklist', () => {
+    it('Delete a Checklist', { tags: ['BASIC', 'FULL'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
         cy.createBoard(randomNumber)
         cy.createList(randomNumber)
@@ -105,8 +108,6 @@ describe('/checklists', () => {
         })
         cy.deleteCard(randomNumber)           
         cy.deleteBoard(randomNumber)
-        cy.deleteJsonFile(randomNumber)    })
+        cy.deleteJsonFile(randomNumber)    
+    })
 })
-
-
-

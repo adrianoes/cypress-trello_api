@@ -4,7 +4,7 @@ describe('/lists', () => {
     const token = `${Cypress.env('trelloToken')}`
     const key = `${Cypress.env('trelloKey')}`
 
-    it('Create a List on a Board', () => {
+    it('Create a List on a Board', { tags: ['BASIC', 'FULL'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
         cy.createBoard(randomNumber)
         cy.readFile(`cypress/fixtures/testdata-${randomNumber}.json`).then(response => {
@@ -27,7 +27,7 @@ describe('/lists', () => {
         cy.deleteBoard(randomNumber)
         cy.deleteJsonFile(randomNumber)    })
 
-    it('Get a List', () => {
+    it('Get a List', { tags: ['BASIC', 'FULL'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
         cy.createBoard(randomNumber)
         cy.createList(randomNumber)
@@ -46,7 +46,7 @@ describe('/lists', () => {
         cy.deleteBoard(randomNumber)
         cy.deleteJsonFile(randomNumber)    })
 
-    it('Update a List - name', () => {
+    it('Update a List - name', { tags: ['BASIC', 'FULL'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
         cy.createBoard(randomNumber)
         cy.createList(randomNumber)
