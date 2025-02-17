@@ -54,11 +54,9 @@ Check then both to add both options in context menu.
 - Execute ```yarn cypress open``` to open cypress app and execute step by step, being able to debug the execution. 
 - Execute ```yarn cypress run``` or ```npx cypress run``` to execute cypress in headless mode.
 - Execute ```CYPRESS_grepTags=BASIC yarn cypress run``` to execute cypress tests tagged as "BASIC"
-- Execute ```CYPRESS_grepTags=FULL+API yarn cypress run``` to execute cypress tests tagged as both "FULL" and "API".
-- Execute ```CYPRESS_grepTags=NEGATIVE,UI yarn cypress run``` to execute cypress tests tagged as "NEGATIVE" or "UI".
-- Execute ```CYPRESS_grepTags=-UI_AND_API yarn cypress run``` to execute cypress tests not tagged as "UI_AND_API".
+- Execute ```CYPRESS_grepTags=NEGATIVE yarn cypress run``` to execute cypress tests tagged as "NEGATIVE".
 - Execute ```npm run cy:parallel``` to execute cypress tests in parallel.
-- Execute ```npx cypress run``` to execute cypress tests in parallel and then execute ```npx mochawesome-merge cypress/reports/*.json > cypress/reports/merged-report.json``` and ```npx marge cypress/reports/merged-report.json -o cypress/reports --inline``` to merge the individual test suite reports in a .json file and generate .html report respectively. 
+- Execute ```npx cypress run``` to execute cypress tests and then execute ```npx mochawesome-merge cypress/reports/*.json > cypress/reports/merged-report.json``` and ```npx marge cypress/reports/merged-report.json -o cypress/reports --inline``` to merge the individual test suite reports in a .json file and generate .html report respectively. 
 
 # Support:
 

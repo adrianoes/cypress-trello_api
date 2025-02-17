@@ -31,7 +31,7 @@ jobs:
 
       # 4. Create reports directory
     - name: Create reports directory
-      run: mkdir cypress/reports/
+      run: mkdir -p ./reports
 
       # 5. Run tests  
     - name: Run tests

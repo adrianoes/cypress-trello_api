@@ -2,3 +2,7 @@ cypress.env.json
 cypress/downloads/
 node_modules/
 commiting.txt
+cypress/videos
+cypress/screenshots
+/runner-results
+reports/
