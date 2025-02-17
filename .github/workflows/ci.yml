@@ -1,0 +1,58 @@
+name: 'Cypress Tests Workflow'
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  cypress-electron-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the repository
+    - name: Checkout the repository
+      uses: actions/checkout@v4
+
+      # 2. Write the cypress.env.json file
+    - name: Write the cypress.env.json file # use quotes around the secret, as its value is simply inserted as a string into the command
+      run: |
+        echo '${{ secrets.CYPRESS_TRELLO_ENV_CI }}' > cypress.env.json
+      
+      # 3. Install dependencies
+    - name: Install dependencies
+      run: |
+        npm install
+        npm install @faker-js/faker --save-dev
+        npm install cypress-fs --save-dev
+
+      # 4. Run tests  
+    - name: Run tests
+      run: npx cypress run
+
+      # 5. Merge Cypress test reports
+    - name: Merge Cypress test reports
+      run: |
+        npx mochawesome-merge cypress/reports/*.json > cypress/reports/merged-report.json
+
+      # 6. Generate the HTML report
+    - name: Generate HTML report
+      run: npx marge cypress/reports/merged-report.json -o cypress/reports --inline
+
+      # 7. Create reports directory
+    - name: Create reports directory
+      run: mkdir -p ./reports
+
+      # 8. Move the HTML report to the reports directory
+    - name: Move HTML report to reports folder
+      run: mv cypress/reports/merged-report.html ./reports/
+
+      # 9. Upload the HTML report as an artifact
+    - name: Upload Cypress test report
+      uses: actions/upload-artifact@v4
+      with:
+        name: cypress-test-report
+        path: ./reports/merged-report.html
