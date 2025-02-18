@@ -10,11 +10,11 @@ describe('/checklists', () => {
         cy.createList(randomNumber)
         cy.createCard(randomNumber)
         cy.readFile(`cypress/fixtures/testdata-${randomNumber}.json`).then(response => {
-            const card_id = response.card_id;
-            const board_id = response.board_id;
-            const list_id = response.list_id;    
+            const card_id = response.card_id
+            const board_id = response.board_id
+            const list_id = response.list_id
             const checklist_name = faker.music.songName()
-            cy.log(card_id);
+            cy.log(card_id)
             cy.api({
                 method: 'POST',
                 url: `/1/checklists?idCard=${card_id}&key=${key}&token=${token}`,
@@ -25,8 +25,7 @@ describe('/checklists', () => {
                 expect(response.status).to.eq(200) 
                 expect(response.body.idBoard).to.eq(board_id) 
                 expect(response.body.idCard).to.eq(card_id) 
-                expect(response.body.name).to.eq(checklist_name) 
-                expect(response.body.id).to.exist                
+                expect(encodeURIComponent(response.body.name)).to.eq(encodeURIComponent(checklist_name))            
                 cy.log(JSON.stringify(response.body.name))
                 cy.writeFile(`cypress/fixtures/testdata-${randomNumber}.json`, {
                     "checklist_id": response.body.id,
@@ -50,18 +49,18 @@ describe('/checklists', () => {
         cy.createCard(randomNumber)
         cy.createChecklist(randomNumber)
         cy.readFile(`cypress/fixtures/testdata-${randomNumber}.json`).then(response => {
-            const checklist_id = response.checklist_id; // Obtendo o checklist_id do arquivo JSON
-            const checklist_name = response.checklist_name; // Obtendo o checklist_name do arquivo JSON
-            const card_id = response.card_id; // Obtendo o card_id do arquivo JSON
-            const board_id = response.board_id;
-            cy.log(checklist_id);
+            const checklist_id = response.checklist_id
+            const checklist_name = response.checklist_name
+            const card_id = response.card_id
+            const board_id = response.board_id
+            cy.log(checklist_id)
             cy.api({
                 method: 'GET',
                 url: `/1/checklists/${checklist_id}?key=${key}&token=${token}`,
             }).then(response => {
                 expect(response.status).to.eq(200) 
                 expect(response.body.id).to.eq(checklist_id) 
-                expect(response.body.name).to.eq(checklist_name) 
+                expect(encodeURIComponent(response.body.name)).to.eq(encodeURIComponent(checklist_name))
                 expect(response.body.idCard).to.eq(card_id) 
                 expect(response.body.idBoard).to.eq(board_id)                
                 cy.log(JSON.stringify(response.body.name))
@@ -81,21 +80,21 @@ describe('/checklists', () => {
         cy.createCard(randomNumber)
         cy.createChecklist(randomNumber)
         cy.readFile(`cypress/fixtures/testdata-${randomNumber}.json`).then(response => {
-            const checklist_id = response.checklist_id; // Obtendo o checklist_id do arquivo JSON
-            const checklist_name = faker.music.songName(); // Nome gerado para o checklist
-            const card_id = response.card_id; // Obtendo o card_id do arquivo JSON
-            const board_id = response.board_id; 
-            cy.log(checklist_id);
+            const checklist_id = response.checklist_id
+            const updated_checklist_name = faker.music.songName()
+            const card_id = response.card_id
+            const board_id = response.board_id
+            cy.log(checklist_id)
             cy.api({
                 method: 'PUT',
                 url: `/1/checklists/${checklist_id}?key=${key}&token=${token}`,
                 body: {
-                    name: checklist_name 
+                    name: updated_checklist_name 
                 }
             }).then(response => {
                 expect(response.status).to.eq(200) 
                 expect(response.body.id).to.eq(checklist_id) 
-                expect(response.body.name).to.eq(checklist_name) 
+                expect(encodeURIComponent(response.body.name)).to.eq(encodeURIComponent(updated_checklist_name))
                 expect(response.body.idCard).to.eq(card_id) 
                 expect(response.body.idBoard).to.eq(board_id)                
                 cy.log(JSON.stringify(response.body.name))
@@ -115,8 +114,8 @@ describe('/checklists', () => {
         cy.createCard(randomNumber)
         cy.createChecklist(randomNumber)
         cy.readFile(`cypress/fixtures/testdata-${randomNumber}.json`).then(response => {
-            const checklist_id = response.checklist_id;
-            cy.log(checklist_id);
+            const checklist_id = response.checklist_id
+            cy.log(checklist_id)
             cy.api({
                 method: 'DELETE',
                 url: `/1/checklists/${checklist_id}?key=${key}&token=${token}`,

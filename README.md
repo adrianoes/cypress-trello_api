@@ -79,6 +79,7 @@ Check then both to add both options in context menu.
 - [How to use a module 'fs' in Cypress?](https://stackoverflow.com/a/77250696/10519428)
 - [cypress-parallel](https://www.npmjs.com/package/cypress-parallel)
 - [mochawesome](https://github.com/adamgruber/mochawesome?tab=readme-ov-file)
+- [encodeURIComponent()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)
 
 # Tips:
 
