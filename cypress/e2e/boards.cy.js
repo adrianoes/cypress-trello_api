@@ -7,7 +7,7 @@ describe('/boards', () => {
 
     it('Create a Board', { tags: ['BASIC', 'FULL', 'BOARD'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
-        const board_name = faker.music.songName() 
+        const board_name = faker.music.songName().replace(/&/g, 'and') 
         cy.api({
             method: 'POST',
             url: `/1/boards/?name=${board_name}&key=${key}&token=${token}`
@@ -53,7 +53,7 @@ describe('/boards', () => {
         cy.createBoard(randomNumber)
         cy.readFile(`cypress/fixtures/testdata-${randomNumber}.json`).then(response => {
             const board_id = response.board_id
-            const new_board_name = faker.music.songName()
+            const new_board_name = faker.music.songName().replace(/&/g, 'and')
             cy.log(board_id);
             cy.api({
                 method: 'PUT',

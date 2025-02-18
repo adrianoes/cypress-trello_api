@@ -13,7 +13,7 @@ describe('/checklists', () => {
             const card_id = response.card_id
             const board_id = response.board_id
             const list_id = response.list_id
-            const checklist_name = faker.music.songName()
+            const checklist_name = faker.music.songName().replace(/&/g, 'and')
             cy.log(card_id)
             cy.api({
                 method: 'POST',
@@ -81,7 +81,7 @@ describe('/checklists', () => {
         cy.createChecklist(randomNumber)
         cy.readFile(`cypress/fixtures/testdata-${randomNumber}.json`).then(response => {
             const checklist_id = response.checklist_id
-            const updated_checklist_name = faker.music.songName()
+            const updated_checklist_name = faker.music.songName().replace(/&/g, 'and')
             const card_id = response.card_id
             const board_id = response.board_id
             cy.log(checklist_id)

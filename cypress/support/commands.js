@@ -4,7 +4,7 @@ const token = `${Cypress.env('trelloToken')}`
 const key = `${Cypress.env('trelloKey')}`
 
 Cypress.Commands.add('createBoard', (randomNumber) => {
-    const board_name = faker.music.songName() // 'White Christmas'
+    const board_name = faker.music.songName().replace(/&/g, 'and') // 'White Christmas'
     cy.api({
         method: 'POST',
         url: `/1/boards/?name=${board_name}&key=${key}&token=${token}`
@@ -36,7 +36,7 @@ Cypress.Commands.add('createList', (randomNumber) => {
     cy.readFile(`cypress/fixtures/testdata-${randomNumber}.json`).then(response => {
         const board_id = response.board_id
         const board_name = response.board_name
-        const list_name = faker.music.songName()
+        const list_name = faker.music.songName().replace(/&/g, 'and')
         cy.log(board_id)
         cy.api({
             method: 'POST',
@@ -60,7 +60,7 @@ Cypress.Commands.add('createCard', (randomNumber) => {
     cy.readFile(`cypress/fixtures/testdata-${randomNumber}.json`).then(response => {
         const list_id = response.list_id
         const board_id = response.board_id
-        const card_name = faker.music.songName()
+        const card_name = faker.music.songName().replace(/&/g, 'and')
         cy.log(list_id)
         cy.api({
             method: 'POST',
@@ -102,7 +102,7 @@ Cypress.Commands.add('createChecklist', (randomNumber) => {
         const card_id = response.card_id
         const board_id = response.board_id
         const list_id = response.list_id   
-        const checklist_name = faker.music.songName()
+        const checklist_name = faker.music.songName().replace(/&/g, 'and')
         cy.log(card_id)
         cy.api({
             method: 'POST',

@@ -11,7 +11,7 @@ describe('/cards', () => {
         cy.readFile(`cypress/fixtures/testdata-${randomNumber}.json`).then(response => {
             const list_id = response.list_id
             const board_id = response.board_id
-            const card_name = faker.music.songName()
+            const card_name = faker.music.songName().replace(/&/g, 'and')
             cy.log(list_id)
             cy.api({
                 method: 'POST',
@@ -76,7 +76,7 @@ describe('/cards', () => {
             const card_id = response.card_id
             const board_id = response.board_id
             const list_id = response.list_id
-            const updated_card_name = faker.music.songName() // 'White Christmas' 
+            const updated_card_name = faker.music.songName().replace(/&/g, 'and') // 'White Christmas' 
             cy.log(card_id)
             cy.api({
                 method: 'PUT',

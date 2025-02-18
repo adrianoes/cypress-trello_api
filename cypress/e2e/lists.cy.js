@@ -10,7 +10,7 @@ describe('/lists', () => {
         cy.readFile(`cypress/fixtures/testdata-${randomNumber}.json`).then(response => {
             const board_id = response.board_id
             const board_name = response.board_name
-            const list_name = faker.music.songName()
+            const list_name = faker.music.songName().replace(/&/g, 'and')
             cy.log(board_id)
             cy.api({
                 method: 'POST',
@@ -64,7 +64,7 @@ describe('/lists', () => {
         cy.readFile(`cypress/fixtures/testdata-${randomNumber}.json`).then(response => {
             const board_id = response.board_id
             const list_id = response.list_id
-            const updated_list_name = faker.music.songName()
+            const updated_list_name = faker.music.songName().replace(/&/g, 'and')
             cy.log(list_id)
             cy.api({
                 method: 'PUT',
