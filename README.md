@@ -80,8 +80,9 @@ Check then both to add both options in context menu.
 - [cypress-parallel](https://www.npmjs.com/package/cypress-parallel)
 - [mochawesome](https://github.com/adamgruber/mochawesome?tab=readme-ov-file)
 - [encodeURIComponent()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)
+- [String.prototype.replace()](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/replace)
 
 # Tips:
 
 - UI and API tests to send password reset link to user's email and API tests to verify a password reset token and reset a user's password must be tested manually as they rely on e-mail verification.
-- In order to escape call back hell, each response has its assert data saved in a .json file. This data is then called in a custom command. In order to call the righ .json file when dealing with paralel tests, a random number is assigned to each test. There is no way to connect the random number from a hook to the code in the body of the test. 
+- In order to escape call back hell, each response has its assertion data saved in a .json file. This data is then called in a custom command. In order to call the righ .json file when dealing with paralel tests, a random number is assigned to each test. There is no way to connect the random number from a hook to the code in the body of the test. 
