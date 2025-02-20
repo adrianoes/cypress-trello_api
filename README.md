@@ -54,7 +54,7 @@ Check then both to add both options in context menu.
 
 - Execute ```yarn cypress open``` or ```npx cypress open``` to open cypress app and execute step by step, being able to debug the execution. 
 - Execute ```yarn cypress run``` or ```npx cypress run``` to execute cypress in headless mode.
-- Execute ```CYPRESS_grepTags=BASIC yarn cypress run``` to execute cypress tests tagged as "BASIC"
+- Execute ```CYPRESS_grepTags=BASIC yarn cypress run``` to execute cypress tests tagged as "BASIC".
 - Execute ```CYPRESS_grepTags=NEGATIVE yarn cypress run``` to execute cypress tests tagged as "NEGATIVE".
 - Execute ```CYPRESS_grepTags=CHECKLIST+BOARD yarn cypress run``` to execute cypress tests tagged as both "CHECKLIST" and "BOARD".
 - Execute ```CYPRESS_grepTags=NEGATIVE,CARD yarn cypress run``` to execute cypress tests tagged as "NEGATIVE" or "CARD".
