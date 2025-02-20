@@ -21,6 +21,7 @@ API testing in [trello api](https://developer.atlassian.com/cloud/trello/rest/).
 
 # Installation:
 
+- See [Trello home](https://trello.com/home), create an account and log in. See [Power-Ups](https://trello.com/power-ups/admin) and hit :point_right:**New**. Input a name, select the workspace, input the account e-mail, support e-mail and author name. Hit :point_right:**Create**, :point_right:**Generate a new API key**, :point_right:**Generate API key** to create an trello API key. Save it in somewhere safe. Hit :point_right:**<ins>Token</ins>** and :point_right:**Allow** to create a trello token. Save it in somewhere safe.
 - See [Node.js page](https://nodejs.org/en) and install the aforementioned Node.js version. Keep all the preferenced options as they are.
 - To use yarn packet manager, open windows prompt as admin and execute ```corepack enable``` (Optional).
 - Execute ```yarn init``` to start a project.
@@ -81,6 +82,7 @@ Check then both to add both options in context menu.
 - [mochawesome](https://github.com/adamgruber/mochawesome?tab=readme-ov-file)
 - [encodeURIComponent()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)
 - [String.prototype.replace()](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/replace)
+- [basic writing and formatting syntax](https://docs.github.com/pt/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 
 # Tips:
 
