@@ -137,7 +137,7 @@ describe('/lists', () => {
         cy.deleteJsonFile(randomNumber)
     })
 
-    it('Update a List - name', { tags: ['BASIC', 'FULL', 'LIST'] }, () => {
+    it('Update a List', { tags: ['BASIC', 'FULL', 'LIST'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
         cy.createBoard(randomNumber)
         cy.createList(randomNumber)
@@ -164,7 +164,7 @@ describe('/lists', () => {
         cy.deleteJsonFile(randomNumber)     
     })
 
-    it('Update a List - name - Negative Test (Bad Request)', { tags: ['NEGATIVE', 'LIST'] }, () => {
+    it('Update a List - Negative Test (Bad Request)', { tags: ['NEGATIVE', 'LIST'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
         cy.createBoard(randomNumber)
         cy.createList(randomNumber)
@@ -187,7 +187,7 @@ describe('/lists', () => {
         cy.deleteJsonFile(randomNumber)
     })
     
-    it('Update a List - name - Negative Test (Unauthorized)', { tags: ['NEGATIVE', 'LIST'] }, () => {
+    it('Update a List - Negative Test (Unauthorized)', { tags: ['NEGATIVE', 'LIST'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
         cy.createBoard(randomNumber)
         cy.createList(randomNumber)

@@ -52,14 +52,14 @@ describe('/checklists', () => {
             const checklist_name = faker.music.songName().replace(/&/g, 'and')
             cy.api({
                 method: 'POST',
-                url: `/1/checklists&idCard=${card_id}&key=&${key}&token=${token}`,
-                // failOnStatusCode: false,
+                url: `/1/checklists?idCard=&${card_id}&key=${key}&token=${token}`,
+                failOnStatusCode: false,
                 body: {
                     name: checklist_name
                 }
             }).then(response => {
                 expect(response.status).to.eq(400)
-                expect(response.body).to.eq('invalid id')
+                expect(response.body).to.eq('invalid value for idCard')
             })
         })
         cy.deleteBoard(randomNumber)
@@ -162,7 +162,7 @@ describe('/checklists', () => {
         cy.deleteJsonFile(randomNumber)
     })
    
-    it('Update a Checklist - name', { tags: ['BASIC', 'FULL', 'CHECKLIST'] }, () => {
+    it('Update a Checklist', { tags: ['BASIC', 'FULL', 'CHECKLIST'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
         cy.createBoard(randomNumber)
         cy.createList(randomNumber)
@@ -196,7 +196,7 @@ describe('/checklists', () => {
         cy.deleteJsonFile(randomNumber)    
     })
 
-    it('Update a Checklist - name - Negative Test (Bad Request)', { tags: ['NEGATIVE', 'CHECKLIST'] }, () => {
+    it('Update a Checklist - Negative Test (Bad Request)', { tags: ['NEGATIVE', 'CHECKLIST'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
         cy.createBoard(randomNumber)
         cy.createList(randomNumber)
@@ -221,7 +221,7 @@ describe('/checklists', () => {
         cy.deleteJsonFile(randomNumber)
     })
     
-    it('Update a Checklist - name - Negative Test (Unauthorized)', { tags: ['NEGATIVE', 'CHECKLIST'] }, () => {
+    it('Update a Checklist - Negative Test (Unauthorized)', { tags: ['NEGATIVE', 'CHECKLIST'] }, () => {
         const randomNumber = faker.finance.creditCardNumber()
         cy.createBoard(randomNumber)
         cy.createList(randomNumber)
