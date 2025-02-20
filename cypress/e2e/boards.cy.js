@@ -228,5 +228,6 @@ describe('/boards', () => {
         })
         cy.deleteBoard(randomNumber)
         cy.deleteJsonFile(randomNumber)
-    })    
+    })  
+      
 })
