@@ -1,4 +1,4 @@
-# cypress-trello_API
+# cypress-trello_api
 
 API testing in [trello api](https://developer.atlassian.com/cloud/trello/rest/). Good practices such as hooks, custom commands and tags, among others, are used. All the necessary support documentation to develop this project is placed here. Although custom commands are used, the assertion code to each test is kept in it so we can work independently in each test. It creates one .json file for each test so we can share data between different requests in the test. The .json file is excluded after each test execution.  
 
